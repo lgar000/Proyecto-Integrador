@@ -13,7 +13,7 @@ public class UserServiceImplements implements UsersService{
 
     @Override
     public User save(User user) {
-       users.put(user.getId(),user);
+        users.put(user.getId(),user);
         return user;
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImplements implements UsersService{
     public User update(User user, String userId) {
         if(users.containsKey(userId)){
             users.put(userId, user);
-           return user;
+            return user;
         }else {
             throw new UserNotFoundException(userId);
         }

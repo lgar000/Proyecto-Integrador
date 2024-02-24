@@ -9,14 +9,14 @@ public class User {
     private String name;
     private String lastName;
     private String email;
-    private String passwordHash;
+    private String passwor;
 
     public User(String id, String name, String lastName, String email, String password) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.passwordHash = password;
+        this.passwor = password;
         this.createdAt = new Date();
     }
 
@@ -25,7 +25,7 @@ public class User {
         this.name = userDto.getName();
         this.lastName = userDto.getLastName();
         this.email = userDto.getEmail();
-        this.passwordHash =userDto.getPassword();
+        this.passwor =userDto.getPassword();
         this.createdAt = new Date();
     }
 
@@ -63,7 +63,7 @@ public class User {
     }
 
     public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+        this.passwor = passwordHash;
     }
 
     public void update(UserDto userDto) {
@@ -71,7 +71,7 @@ public class User {
         this.lastName = userDto.getLastName();
         this.email = userDto.getEmail();
         if (!userDto.getPassword().isEmpty()) {
-            this.passwordHash = userDto.getPassword();
+            this.passwor = userDto.getPassword();
         }
     }
 }
