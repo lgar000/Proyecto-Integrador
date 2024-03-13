@@ -5,6 +5,7 @@ import com.adaSchool.Proyecto.Integrador.repository.user.User;
 import com.adaSchool.Proyecto.Integrador.repository.user.UserDto;
 import com.adaSchool.Proyecto.Integrador.service.user.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UsersController  {
 
     private final UsersService usersService;
 
-    public UsersController(@Autowired UsersService usersService) {
+    public UsersController(@Autowired @Qualifier("userServiceImplementsMongoDB")UsersService usersService) {
         this.usersService = usersService;
     }
 
@@ -26,8 +27,8 @@ public class UsersController  {
     public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
         User newUser = new User(userDto);
         usersService.save(newUser);
-        URI createdUserUri = URI.create("/v1/users/"+newUser);
-        return ResponseEntity.created(createdUserUri).body(null);
+        URI createdUserUri = URI.create("/v1/users/"+newUser.getId());
+        return ResponseEntity.created(createdUserUri).body(newUser);
     }
 
     @GetMapping
